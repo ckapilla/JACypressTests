@@ -1,0 +1,15 @@
+{
+  "chromeWebSecurity": false,
+  "baseUrl": "https://privada.jovenesadelante.org",
+  "testFiles": [
+    "logIn.js",
+    "adminMenu.js",
+    "sponsorsMenu.js",
+    "estudiantesMenu.js",
+    "confidentialMenu.js",
+    "becasMenu.js",
+    "quarterlyMenu.js",
+    "logOut.js",
+    "clearCookies.js"
+  ]
+}
