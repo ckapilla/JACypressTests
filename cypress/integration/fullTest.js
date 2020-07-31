@@ -3,7 +3,7 @@ describe('Full Test', () => {
     cy.visit('https://privada.jovenesadelante.org');
   });
   it('Should login user', () => {
-    cy.get('button').click('topRight');
+    cy.get('button').should("contain", 'Log In / Iniciar sesión').click();
     cy.get('input[name="email"]').type('carlos.cadena05@hotmail.com');
     cy.get('input[name="password"]').type('klos050007');
     cy.get('form').submit().wait(1000);
@@ -72,7 +72,7 @@ describe('Full Test', () => {
     cy.contains('Estudiantes').click().wait(1000);
   });
   it('Should edit last report', () => {
-    cy.get('button').wait(1000).contains('Editar').click().wait(1000);
+    cy.contains('Editar').click().wait(1000);
     cy.get('button').wait(1000).contains('Cancelar').click().wait(1000);
     cy.scrollTo('bottom').wait(1000);
   });
@@ -82,8 +82,8 @@ describe('Full Test', () => {
   it('Should create a new report', () => {
     cy.contains('Review/Edit Reports').click().wait(1000); 
     cy.get('input').type('CADENA RIOS').wait(1000);
-    cy.contains('CADENA RIOS').click().wait(1000);
-    cy.contains('Add New Report /Añadir un Nuevo Informe').click().wait(1000);
+    cy.get('button').contains('CADENA RIOS').click().wait(2000);
+    cy.contains('Add New Report').click().wait(1000);
     cy.get('select[formcontrolname="lastContactMonthSelector"]').wait(1000).select('Jul/Jul').wait(1000);
     cy.get('[type="radio"]').first().check().wait(1000); 
     cy.get('textarea').last().type('This is a test').wait(1000).clear().wait(1000);
@@ -112,6 +112,5 @@ describe('Full Test', () => {
   });
   it('Should clear cookies', () => {
     cy.clearCookies();
-    cy.pause();
   });
 });

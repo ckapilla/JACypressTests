@@ -12,6 +12,7 @@
   },
   "scripts": {
     "test": "ng test",
+    "start": "ng serve --port 3000",
     "cypress": "concurrently \"npm run start\" \"cypress open\"",
     "cypress:headless": "concurrently \"npm run start\" \"cypress run\"",
     "cy:run": "cypress run"

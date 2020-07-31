@@ -10,7 +10,10 @@
     "becasMenu.js",
     "quarterlyMenu.js",
     "logOut.js",
-    "clearCookies.js"
+    "clearCookies.js",
+    "fullTest.js"
   ],
-  "video": false
+  "defaultCommandTimeout":7000,
+  "execTimeout":100000,
+  "pageLoadTimeout":100000
 }
