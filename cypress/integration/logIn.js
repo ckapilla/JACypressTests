@@ -1,7 +1,6 @@
 describe('logIn', () => {
   it('Should go to Jovenes Adelante website directly', () => {
     cy.visit('https://privada.jovenesadelante.org');
-    cy.viewport(550, 750) 
   });
   it('Should login user', () => {
     cy.get('button').click('topRight');

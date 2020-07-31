@@ -15,7 +15,16 @@
 /**
  * @type {Cypress.PluginConfig}
  */
-module.exports = (on, config) => {
-  // `on` is used to hook into various events Cypress emits
-  // `config` is the resolved Cypress config
+let shouldSkip = false;
+module.exports = ( on ) => {
+  on('task', {
+    resetShouldSkipFlag () {
+      shouldSkip = false;
+      return null;
+    },
+    shouldSkip ( value ) {
+      if ( value != null ) shouldSkip = value;
+      return shouldSkip;
+    }
+  });
 }

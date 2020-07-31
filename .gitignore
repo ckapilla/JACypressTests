@@ -4,3 +4,5 @@ cypress/videos
 cypress/support
 cypress/integration/examples
 cypress/fixtures/example.json
+.vscode/
+tests/

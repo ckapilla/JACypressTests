@@ -11,5 +11,6 @@
     "quarterlyMenu.js",
     "logOut.js",
     "clearCookies.js"
-  ]
+  ],
+  "video": false
 }

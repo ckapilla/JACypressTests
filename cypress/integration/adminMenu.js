@@ -1,8 +1,7 @@
 describe('adminsMenu', () => {
   it('Should go to Admins', () => {
-      cy.get('a').first().focus().wait(1000);
-       
-      cy.contains('Admins').click();        
+    cy.visit('https://privada.jovenesadelante.org');
+    cy.contains('Admins').click().wait(3000);        
   });
 
   it('Should go to Students and search for Carlos', () => {
@@ -34,6 +33,7 @@ describe('adminsMenu', () => {
      cy.get('select[name="monthSelector"]').wait(1000).select('Aug/Ago').wait(1000);
      cy.contains('[Student: CADENA RIOS, CARLOS ANTONIO ]').click().wait(1000);
      cy.get('[type="checkbox"]').check().wait(1000).uncheck().wait(1000);
+     cy.go(-1).wait(1000).get('button').eq(4).should('contain', 'Review').click().wait(1000);
   });
 
   it('Should take a Screenshot after selecting Mentor Reports Submitted', () => {

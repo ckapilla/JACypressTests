@@ -1,0 +1,29 @@
+{
+  "name": "jacypress",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "concurrently": "^5.2.0",
+    "cypress": "^4.11.0"
+  },
+  "devDependencies": {
+    "cypress": "^3.4.1"
+  },
+  "scripts": {
+    "test": "ng test",
+    "cypress": "concurrently \"npm run start\" \"cypress open\"",
+    "cypress:headless": "concurrently \"npm run start\" \"cypress run\"",
+    "cy:run": "cypress run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ckapilla/JACypressTests.git"
+  },
+  "author": "ja",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ckapilla/JACypressTests/issues"
+  },
+  "homepage": "https://github.com/ckapilla/JACypressTests#readme"
+}
