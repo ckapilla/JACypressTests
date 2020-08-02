@@ -1,19 +1,14 @@
 {
   "chromeWebSecurity": false,
-  "baseUrl": "https://privada.jovenesadelante.org",
+  "baseUrl": "http://localhost:3000",
   "testFiles": [
-    "logIn.js",
-    "adminMenu.js",
-    "sponsorsMenu.js",
-    "estudiantesMenu.js",
-    "confidentialMenu.js",
-    "becasMenu.js",
-    "quarterlyMenu.js",
-    "logOut.js",
-    "clearCookies.js",
     "fullTest.js"
   ],
-  "defaultCommandTimeout":7000,
-  "execTimeout":100000,
-  "pageLoadTimeout":100000
+  "defaultCommandTimeout": 7000,
+  "execTimeout": 10000,
+  "pageLoadTimeout": 10000,
+  "browser": "chrome",
+  "video": false,
+  "videoUploadOnPasses": false,
+  "projectId": "tfv2uz"
 }
