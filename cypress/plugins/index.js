@@ -16,14 +16,14 @@
  * @type {Cypress.PluginConfig}
  */
 let shouldSkip = false;
-module.exports = ( on ) => {
+module.exports = (on) => {
   on('task', {
-    resetShouldSkipFlag () {
+    resetShouldSkipFlag() {
       shouldSkip = false;
       return null;
     },
-    shouldSkip ( value ) {
-      if ( value != null ) shouldSkip = value;
+    shouldSkip(value) {
+      if (value != null) shouldSkip = value;
       return shouldSkip;
     }
   });

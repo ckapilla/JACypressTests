@@ -6,3 +6,4 @@ cypress/integration/examples
 cypress/fixtures/example.json
 .vscode/
 tests/
+cypress.env.json
