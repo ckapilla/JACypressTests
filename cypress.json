@@ -1,8 +1,10 @@
 {
   "chromeWebSecurity": false,
-  "baseUrl": "http://localhost:3000",
+  "baseUrl": "http://privada.jovenesadelante.org",
   "testFiles": [
-    "fullTest.js"
+    "01_mentor.spec.js",
+    "02_student.spec.js",
+    "03_admin.spec.js"
   ],
   "defaultCommandTimeout": 10000,
   "execTimeout": 10000,
