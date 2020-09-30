@@ -4,8 +4,6 @@ describe('Student Test', () => {
     cy.visit('');
   });
   it('If Not Logged in, Should login Student user, else proceed', () => {
-
-
     cy.get('[data-cy=login_welcome]').then(($selectedElement) => {
       // synchronously ask for the container text
       // and do something based on whether it includes
@@ -20,11 +18,11 @@ describe('Student Test', () => {
         cy.log('LOGGING IN WITH username = ' + username);
         cy.log('LOGGING IN WITH password = ' + password);
 
-        cy.get('[data-cy=login]').click().wait(1000);
+        cy.get('[data-cy=login]').click();
         // now see if we are prompted to log or that is skipped from cache
         cy.get('body').then(($body) => {
 
-          cy.log('is widget showing?').wait(50);
+          cy.log('is widget showing?');
 
           //if ($body.hasClass('.auth0-lock-widget')) {
           if ($body.text().includes('Set password')) {
@@ -49,15 +47,15 @@ describe('Student Test', () => {
   });
 
   it('Should go to Estudiantes and add new report', () => {
-    cy.contains('Estudiantes').click().wait(1000);
-    cy.contains('Estudiantes').click().wait(1000);
-    cy.contains('Añadir Nuevo Reporte').click().wait(1000);
-    cy.get('textarea').last().type('This is an auto-generated test student self report').wait(1000).wait(1000);
-    cy.get('button').wait(1000).contains('Guardar').click().wait(1000);
+    cy.contains('Estudiantes').click();
+    cy.contains('Estudiantes').click();
+    cy.contains('Añadir Nuevo Reporte').click();
+    cy.get('textarea').last().type('This is an auto-generated test student self report');
+    cy.get('button').contains('Guardar').click();
   });
   // it('Should edit / cancel editing last report', () => {
-  //   cy.get('button').wait(1000).contains('Editar').click().wait(1000);
-  //   cy.get('button').wait(1000).contains('Cancelar').click().wait(1000);
+  //   cy.get('button').contains('Editar').click();
+  //   cy.get('button').contains('Cancelar').click();
   // });
 
 

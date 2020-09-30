@@ -31,7 +31,7 @@ module.exports = (on) => {
   on('before:browser:launch', (browser = {}, launchOptions) => {
     if (browser.name === 'chrome') {
       launchOptions.args.push('--auto-open-devtools-for-tabs');
-      launchOptions.args.push('--window-size=1600,1600')
+      launchOptions.args.push('--window-size=1200,1400')
       return launchOptions;
     }
   });

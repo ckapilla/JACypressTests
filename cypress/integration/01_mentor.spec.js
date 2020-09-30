@@ -15,7 +15,6 @@ describe('Mentor Test', () => {
     cy.visit('');
   });
   it('If Not Logged in, Should login Mentor user, else proceed', () => {
-
     cy.get('[data-cy=login_welcome]').then(($selectedElement) => {
       // synchronously ask for the container text
       // and do something based on whether it includes

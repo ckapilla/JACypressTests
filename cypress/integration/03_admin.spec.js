@@ -18,10 +18,10 @@ describe('Admin Test', () => {
         cy.log('LOGGING IN WITH username = ' + username);
         cy.log('LOGGING IN WITH password = ' + password);
 
-        cy.get('[data-cy=login]').click().wait(1000);
+        cy.get('[data-cy=login]').click();
         // now see if we are prompted to log or that is skipped from cache
         cy.get('body').then(($body) => {
-          cy.log('is widget showing?').wait(50);
+          cy.log('is widget showing?');
           //if ($body.hasClass('.auth0-lock-widget')) {
           if ($body.text().includes('Set password')) {
             cy.log('confirming widget is showing');
@@ -42,7 +42,7 @@ describe('Admin Test', () => {
   });
 
   it('Should go to Admins', () => {
-    cy.contains('Admins').click().wait(1000);
+    cy.contains('Admins').click();
   });
 
   it('Should go to Utilities', () => {
@@ -54,7 +54,7 @@ describe('Admin Test', () => {
 
   it('Should go to Students and search for _Test, _Student', () => {
     cy.contains('Students').click();
-    cy.get('input').type('_Test').wait(150);
+    cy.get('input').type('_Test');
     cy.contains('_Test, _Student').click();
     // click on editable
 
@@ -69,7 +69,7 @@ describe('Admin Test', () => {
 
   it('Should go to Members and search for _Test', () => {
     cy.contains('Members').click();
-    cy.get('input').type('_Test').wait(150);
+    cy.get('input').type('_Test');
     cy.contains('_Test, _Mentor').click();
   });
 
@@ -81,28 +81,26 @@ describe('Admin Test', () => {
   });
 
   it('Should go to Mentor Rpts and using default (current) year/month and review _TEST, _STUDENT', () => {
-    cy.contains('MentorRpts').click().wait(3000);
+    cy.contains('MentorRpts').click();
 
     if (cy.get('span').should('contain', '[Student: _Test, _Student ]')) {
-      cy.get('button').contains('Review').eq(0).click().wait(1000);
+      cy.get('button').contains('Review').eq(0).click();
 
       cy.log('on MR Review Page for _Test, Student => update contents');
       cy.get('#narrative_English').should('have.value', 'This is an auto-generated test mentor report');
       cy.log('click on Save');
-      cy.get('[data-cy=submit]').click().wait(1000);
+      cy.get('[data-cy=submit]').click();
       cy.log('should have returned to MR List');
       cy.contains('Mentor Report Review');
-      cy.wait(1500);
     }
 
     if (cy.get('span').should('contain', '[Student: _Test, _Student ]')) {
-      cy.get('button').contains('Review').eq(0).click().wait(1000);
+      cy.get('button').contains('Review').eq(0).click();
       cy.log('on MR Review Page for _Test, Student => delete entry');
-      cy.scrollTo('bottom').wait(1000).contains('Delete').click().wait(1000);
+      cy.scrollTo('bottom').contains('Delete').click();
 
       // for reasons not understood, the following commands are not needed:
       // cy.on('window:confirm', () => true);
-      // cy.wait(1000);
       // cy.log('Deleted successfully')
 
     }
@@ -114,8 +112,8 @@ describe('Admin Test', () => {
 
     // cy.log('add new Follow Up Request');
     // cy.contains('Add New FollowUpRequest').click()
-    // cy.get('select[name="StudentSelector"]').wait(1000.).select('_Student, _Test');
-    // cy.get('select[id="requestorRoleSelector"]').wait(1000.).select('Admin');
+    // cy.get('select[name="StudentSelector"]').select('_Student, _Test');
+    // cy.get('select[id="requestorRoleSelector"]').select('Admin');
     // cy.get('input').type('This is a test').clear();
     // cy.contains('Cancel').click();
 
@@ -137,10 +135,9 @@ describe('Admin Test', () => {
   });
   it('Should create a new Confidential report', () => {
     cy.contains('Review/Edit Reports').click();
-    cy.get('input').type('_Test').wait(1500);
-    cy.contains('_Test, _Student').click().wait(1500);
+    cy.get('input').type('_Test').wait(1500);  // << 1500 required
+    cy.contains('_Test, _Student').click();
     cy.contains('Add New Report /Añadir un Nuevo Informe').click();
-    // cy.get('select[formcontrolname="lastContactYearSelector"]').wait(1000).select('2020').wait(1000);
     cy.get('select[formcontrolname="lastContactMonthSelector"]').select('Jul/Jul');
     cy.get('[type="radio"]').first().check();
     cy.get('textarea').last().type('This is an auto-generated test confidential report');
@@ -163,8 +160,8 @@ describe('Admin Test', () => {
   //   cy.contains('CADENA RIOS, CARLOS ANTONIO').click();
   //   cy.contains('JA Comments').click();
   //   cy.get('textarea').last().type('test');
-  //   cy.get('textarea').last().type('{backspace}').wait(100).clear();
-  //   cy.get('select[name="activePeriodSelector"]').wait(1000.).select('2019 4:Oct-Dic');
+  //   cy.get('textarea').last().type('{backspace}').clear();
+  //   cy.get('select[name="activePeriodSelector"]').select('2019 4:Oct-Dic');
   // });
 
 
