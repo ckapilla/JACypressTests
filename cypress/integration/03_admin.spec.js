@@ -98,37 +98,34 @@ describe('Admin Test', () => {
       cy.get('button').contains('Review').eq(0).click();
       cy.log('on MR Review Page for _Test, Student => delete entry');
       cy.scrollTo('bottom').contains('Delete').click();
-
-      // for reasons not understood, the following commands are not needed:
-      // cy.on('window:confirm', () => true);
-      // cy.log('Deleted successfully')
+      cy.on('window:confirm', () => true).wait(1000);
+      cy.log('Deleted successfully')
 
     }
   });
 
-  it('Should go to FollowUp Requests and select Closed request status', () => {
-    cy.contains('FollowUpReqs').click()
-    cy.get('select[name="MRReviewedStatusSelector"]').select('Closed / Resolved');
+  it('Should go to FollowUp Requests and select Closed /Resolved request status', () => {
+    cy.contains('FollowUpReqs').click().wait(3000);
+    cy.get('select[name="MRReviewedStatusSelector"]').select('Closed / Resolved').wait(1000);
 
-    // cy.log('add new Follow Up Request');
-    // cy.contains('Add New FollowUpRequest').click()
-    // cy.get('select[name="StudentSelector"]').select('_Student, _Test');
-    // cy.get('select[id="requestorRoleSelector"]').select('Admin');
-    // cy.get('input').type('This is a test').clear();
-    // cy.contains('Cancel').click();
+    cy.log('add new Follow Up Request');
+    cy.contains('Add New FollowUpRequest').click()
+    cy.get('select[name="StudentSelector"]').select('_Test, _Student');
+    cy.get('select[id="requestorRoleSelector"]').select('Admin');
+    cy.get('input').type('This is a test').clear();
+    cy.contains('Cancel').click();
 
   });
 
 
-  // it('Should go to Sponsors', () => {
-  //   cy.get('[data-cy=top-sponsors]').click();
-  // });
+  it('Should go to Sponsors', () => {
+    cy.get('[data-cy=top-sponsors]').click();
+  });
   // it('Should be able to change the select values and go through the tabs', () => {
   //   cy.get('select[name="activePeriodSelector"]').select('2019 3:Jul-Set').select('2019 4:Oct-Dic').select('2020 1:Ene-Mar');
   //   cy.contains('Mentor Reports').click();
   //   cy.contains('JA Comments').click();
   // });
-
 
   it('Should go to Confidential', () => {
     cy.contains('Confidential').click();
@@ -144,32 +141,46 @@ describe('Admin Test', () => {
     cy.contains('Cancel').click();
   });
 
-
-  it('Should go to Becas', () => {
+  it('Should go to Becas (Grades List)', () => {
     cy.contains('Becas').click();
   });
-  // it('Should go to my grades', () => {
-  //   cy.contains('CADENA RIOS, CARLOS ANTONIO').click();
-  //   cy.contains('Back').click();
-  //   cy.contains('StudentRpts').click();
-  // });
+
+
+  it('Should go to Review/Edit Grades', () => {
+    cy.contains('CADENA RIOS, CARLOS ANTONIO').click();
+    cy.contains('Back').click();
+    cy.contains('StudentRpts').click();
+    cy.contains('Reports Needed').click();
+  });
+
+  it('Should go to StudentRpts', () => {
+    cy.contains('StudentRpts').click();
+    cy.contains('CADENA RIOS, CARLOS ANTONIO').click();
+    cy.contains('Back').click();
+    cy.contains('StudentRpts').click();
+  });
+
+
   it('Should go to Quarterly', () => {
     cy.contains('Quarterly').click();
   });
-  // it('Should be able to comment under JA Comments', () => {
-  //   cy.contains('CADENA RIOS, CARLOS ANTONIO').click();
-  //   cy.contains('JA Comments').click();
-  //   cy.get('textarea').last().type('test');
-  //   cy.get('textarea').last().type('{backspace}').clear();
-  //   cy.get('select[name="activePeriodSelector"]').select('2019 4:Oct-Dic');
-  // });
+  it('Should go to single student QR page', () => {
+    cy.get('select[name="activePeriodSelector"]').select('2019 4:Oct-Dic').wait(2000);
+    cy.contains('CADENA RIOS, CARLOS ANTONIO').click().wait(1000);
 
-
-
-
-  it('Should Logout', () => {
-    cy.log('Logging out').wait(3000);
-    cy.get('[data-cy=logout]').click();
   });
+
+  it('Should add comment under JA Comments', () => {
+    // cy.get('[data-cy=period-selector]');
+    cy.get('#ngb-tab-10').click();
+    cy.get('#narrative_English').type('automatically generated test comment');
+    cy.contains('Cancelar').click();
+  });
+
+
+  // it('Should Logout', () => {
+  //   cy.log('Logging out').wait(3000);
+  //   cy.get('[data-cy=logout]').click();
+  // });
 
 });
