@@ -60,7 +60,7 @@ describe('Student Test', () => {
 
 
   it('Should Logout', () => {
-    cy.log('Logging out').wait(3000);
+    cy.log('Logging out');
     cy.get('[data-cy=logout]').click();
   });
 

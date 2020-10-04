@@ -1,16 +1,5 @@
 describe('Mentor Test', () => {
 
-  // beforeEach(() => {
-  //   cy.restoreLocalStorageCache();
-  //   cy.log('restoringFromLocalStorageCache');
-  // });
-
-  // afterEach(() => {
-  //   cy.saveLocalStorageCache();
-  //   cy.log('saveToLocalStorageCache');
-  // });
-
-
   it('Should go to Jovenes Adelante website', () => {
     cy.visit('');
   });
@@ -28,10 +17,10 @@ describe('Mentor Test', () => {
         cy.log('**LOGGING IN WITH username = ' + username + '**');
         cy.log('**LOGGING IN WITH password = ' + password + '**');
 
-        cy.get('[data-cy=login]').click().wait(1000);
+        cy.get('[data-cy=login]').click();
         // now see if we are prompted to log or that is skipped from cache
         cy.get('body').then(($body) => {
-          cy.log('is widget showing?').wait(50);
+          cy.log('is widget showing?');
           //if ($body.hasClass('.auth0-lock-widget')) {
           if ($body.text().includes('Set password')) {
             cy.log('_confirming widget is showing_');
@@ -54,8 +43,8 @@ describe('Mentor Test', () => {
   it('Should go to Mentors Page and click on _Test, _Student then Add New Report', () => {
     cy.contains('Mentors').click();
     cy.contains('Add New Report /Añadir un Nuevo Informe').click();
-    // cy.get('select[formcontrolname="lastContactYearSelector"]').wait(1000).select('2017').wait(1000);
-    cy.get('select[formcontrolname="lastContactMonthSelector"]').select('Sep/Set');
+    cy.get('select[formcontrolname="lastContactMonthSelector"]').should('contain', 'Oct/Oct')
+      .select('Oct/Oct');
     cy.get('[type="radio"]').first().check();
     cy.get('textarea').last().type('This is an auto-generated test mentor report');
     cy.contains('Submit').click();
