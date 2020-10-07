@@ -7,3 +7,4 @@ cypress/fixtures/example.json
 .vscode/
 tests/
 cypress.env.json
+package-lock.json

@@ -1,6 +1,6 @@
 {
   "chromeWebSecurity": false,
-  "baseUrl": "http://privada.jovenesadelante.org",
+  "baseUrl": "http://localhost:3000",
   "testFiles": [
     "01_mentor.spec.js",
     "02_student.spec.js",

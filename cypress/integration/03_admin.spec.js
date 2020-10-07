@@ -1,3 +1,5 @@
+
+
 describe('Admin Test', () => {
 
   it('Should go to Jovenes Adelante website', () => {
@@ -22,23 +24,36 @@ describe('Admin Test', () => {
 
   it('Should go to Admins/Students and search for _Test, _Student', () => {
     cy.contains('Students').click();
-    cy.get('input').type('_Test');
-    cy.contains('_Test, _Student').click();
-    // click on editable
 
-    // edit emergency contact; enter XXX + date
+    cy.get('input').type('{backspace}_Test').wait(1500); // must wait for server
+    cy.tab();
+    cy.contains('Student Profile: _Test, _Student').click();
+    // on student profile
+    cy.get('#ckEditMode').click();
+    cy.get('#mentorGUId').should('contain', '_Test, _Mentor')
+      .select('_Unassigned, _Mentor');
+    cy.get('[data-cy=btn-save]').click();
 
-    // click save
+    cy.get('#mentorGUId').should('contain', '_Unassigned, _Mentor')
+      .select('_Test, _Mentor');
+    cy.get('[data-cy=btn-save]').click();
 
-    // test for presence of XXX + date
+    cy.get('[data-cy=goto-mentor]').click();
+    // on mentor profile
+    cy.get('[data-cy=last-names]').invoke('val').then(($val) => {
+      expect($val).eq('_Test');
+    });
 
+    cy.get('[data-cy=btn-back]').click();
+    // on student profile
+    cy.get('#mentorGUId').should('contain', '_Test, _Mentor');
 
   });
-
-  it('Should go to Admins/Members and search for _Test', () => {
+  it('Should go to Admins/Members and search for _Test, _Mentor', () => {
     cy.contains('Members').click();
-    cy.get('input').type('_Test');
-    cy.contains('_Test, _Mentor').click();
+    cy.get('input').type('{backspace}_Test, _Mentor').wait(1000); // must wait for server
+    cy.tab();
+    cy.contains('Member Profile: _Test, _Mentor').click();
   });
 
   it('Should go to Admins/Sponsors and sort by Group Member Name', () => {
@@ -108,8 +123,10 @@ describe('Admin Test', () => {
   });
   it('Should create a new Confidential report', () => {
     cy.contains('Review/Edit Reports').click();
-    cy.get('input').type('_Test').wait(1500); // needed because drop-down is a new element that depends on server timing
-    cy.get('.dropdown-item').should('contain', '_Test').click();
+
+    cy.get('input').type('{backspace}_Test').wait(1000); // must wait for server
+    cy.tab();
+    cy.contains('Student Profile: _Test, _Student');
     cy.get('.btn-default').should('contain', 'Add New Report /Añadir un Nuevo Informe').click()
     cy.get('select[formcontrolname="lastContactMonthSelector"]').should('contain', 'Jul/Jul')
       .select('Jul/Jul');
@@ -154,9 +171,8 @@ describe('Admin Test', () => {
     cy.contains('Cancelar').click();
   });
 
-  // it('Should Logout', () => {
-  //   cy.log('Logging out');
-  //   cy.get('[data-cy=logout]').click();
-  // });
-
+  it('Should Logout', () => {
+    cy.log('Logging out');
+    cy.get('[data-cy=logout]').click();
+  });
 });
