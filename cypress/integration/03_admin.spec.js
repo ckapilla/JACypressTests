@@ -1,3 +1,4 @@
+//const { type } = require("cypress/types/jquery");
 
 
 describe('Admin Test', () => {
@@ -27,7 +28,7 @@ describe('Admin Test', () => {
 
     cy.get('input').type('{backspace}_Test').wait(1500); // must wait for server
     cy.tab();
-    cy.contains('Student Profile: _Test, _Student').click();
+    cy.contains('Student Summary: _Test, _Student').click();
     // on student profile
     cy.get('#ckEditMode').click();
     cy.get('#mentorGUId').should('contain', '_Test, _Mentor')
@@ -37,6 +38,16 @@ describe('Admin Test', () => {
     cy.get('#mentorGUId').should('contain', '_Unassigned, _Mentor')
       .select('_Test, _Mentor');
     cy.get('[data-cy=btn-save]').click();
+
+    cy.contains('Member Profile').click();
+    cy.get('#ckEditMode').click(); 
+    cy.get('#cellPhone').click().type('{backspace}1');
+    cy.get('#ckEditMode').click();
+    cy.contains('Mentor Reports').click();
+    cy.contains('Quarterly Reports').click();
+    cy.contains(' Go To Quarterly Reports for this student.').click();
+    cy.contains('Student Summary: _Test, _Student').click();
+
 
     cy.get('[data-cy=goto-mentor]').click();
     // on mentor profile
@@ -126,7 +137,7 @@ describe('Admin Test', () => {
 
     cy.get('input').type('{backspace}_Test').wait(1000); // must wait for server
     cy.tab();
-    cy.contains('Student Profile: _Test, _Student');
+    cy.contains('Student Summary: _Test, _Student');
     cy.get('.btn-default').should('contain', 'Add New Report /Añadir un Nuevo Informe').click()
     cy.get('select[formcontrolname="lastContactMonthSelector"]').should('contain', 'Jul/Jul')
       .select('Jul/Jul');

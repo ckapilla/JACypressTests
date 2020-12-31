@@ -8,7 +8,7 @@
   ],
   "defaultCommandTimeout": 10000,
   "execTimeout": 10000,
-  "pageLoadTimeout": 15000,
+  "pageLoadTimeout": 20000,
   "browser": "chrome",
   "video": false,
   "videoUploadOnPasses": false,

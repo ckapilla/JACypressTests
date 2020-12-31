@@ -22,6 +22,17 @@ describe('Student Test', () => {
   //   cy.get('button').contains('Cancelar').click();
   // });
 
+  it('Should go to Estudiantes and edit profile', () => {
+    cy.contains('Perfil').click();
+    cy.get('#cellPhone').click().type('{backspace}1');
+  });
+
+  it('Should go to Estudiantes and enter GPA', () => {
+    cy.contains('ingrese Promedio').click();
+    cy.get('#gradePointAvg').click().type('9.5');
+    cy.contains('Guardar').click();
+  });
+
 
   it('Should Logout', () => {
     cy.log('Logging out');
